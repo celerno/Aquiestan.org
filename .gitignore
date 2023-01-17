@@ -11,6 +11,10 @@
 *.sln.docstates
 # Piranha CMS
 piranha.*
+
+/*/wwwroot/uploads/*
+
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

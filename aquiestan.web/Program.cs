@@ -4,6 +4,7 @@ using Piranha.AttributeBuilder;
 using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
+using aquiestan.web.Site;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,6 +63,7 @@ app.UsePiranha(options =>
     // Build content types
     new ContentTypeBuilder(options.Api)
         .AddAssembly(typeof(Program).Assembly)
+        .AddType(typeof(AquiestanSite))
         .Build()
         .DeleteOrphans();
 

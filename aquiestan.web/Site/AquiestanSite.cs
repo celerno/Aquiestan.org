@@ -14,6 +14,7 @@ namespace aquiestan.web.Site
         [Region(Description = "Logo")]
         public ImageField Logo { get; set; }
 
+        
 
     }
 }

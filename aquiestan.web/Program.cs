@@ -5,6 +5,7 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using aquiestan.web.Site;
+using aquiestan.web.Site.Pages;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +65,9 @@ app.UsePiranha(options =>
     new ContentTypeBuilder(options.Api)
         .AddAssembly(typeof(Program).Assembly)
         .AddType(typeof(AquiestanSite))
+        .AddType(typeof(Colectivo))
+        .AddType(typeof(MapRegion))
+        .AddType(typeof(ColectivoPage))
         .Build()
         .DeleteOrphans();
 

@@ -1,5 +1,6 @@
 ﻿using aquiestan.web.Site.Pages;
 using Piranha.AttributeBuilder;
+using Piranha.Extend.Fields;
 using System.Runtime.Serialization;
 using static Piranha.Manager.Models.PageListModel;
 
@@ -24,7 +25,7 @@ namespace aquiestan.web.Site.DataTypes
             return new Colectivo
             {
                 Id = Guid.Parse(colectivo?.Id.ToString()),
-                Nombre = colectivo?.Nombre?.Value
+                Nombre = colectivo?.Title?.Value
             };
         }
 
@@ -39,7 +40,7 @@ namespace aquiestan.web.Site.DataTypes
             return colectivos?.Select(p => new DataSelectFieldItem
             {
                 Id = p?.Id.ToString(),
-                Name = p?.Nombre?.Value
+                Name = p?.Title?.Value
             });
         }
 
@@ -63,6 +64,9 @@ namespace aquiestan.web.Site.DataTypes
 
         [Field(Description ="Para indicar algún comentario referente a la ubicación del hallazgo tipo señalizaciones, indicaciones para llegar, condiciones especiales, etcétera.")]
         public StringField ReferenciasDeUbicacion { get; set; }
+
+        [Field(Description = "Campos extraídos sin formato apropiado o sin formato en modo json", Title ="Campos sin procesamiento")]
+        public StringField CamposSinFormato { get; set; }
     }
 
     [PageType(Description = "Entrada relativa a una incidencia en particular.")]

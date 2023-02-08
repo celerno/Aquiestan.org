@@ -26,7 +26,7 @@ builder.AddPiranha(options =>
     options.UseImageSharp();
     options.UseTinyMCE();
     options.UseMemoryCache();
-
+    options.UseAquiEstanDataModule();
     var connectionString = builder.Configuration.GetConnectionString("piranha");
     options.UseEF<SQLiteDb>(db => db.UseSqlite(connectionString));
     options.UseIdentityWithSeed<IdentitySQLiteDb>(db => db.UseSqlite(connectionString));
@@ -70,13 +70,15 @@ app.UsePiranha(options =>
         .AddType(typeof(ColectivoPage))
         .Build()
         .DeleteOrphans();
-
+    
     // Configure Tiny MCE
     EditorConfig.FromFile("editorconfig.json");
 
     options.UseManager();
     options.UseTinyMCE();
     options.UseIdentity();
+    options.UseAquiEstanDataModule();
 });
+
 
 app.Run();

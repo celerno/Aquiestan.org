@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.Data.MetaTitle) ? Model.Data.MetaTitle : Model.Data.Title;
     var hasImage = Model.Data.PrimaryImage.HasValue;
-
     var posts = Model.Archive.Posts.Count;
     foreach(var post in Model.Archive.Posts)
     {
@@ -37,12 +36,17 @@
     </div>
     <style>
         table{
-            display: flex;
+            width: 90%;
         }
-        td{
-            margin: 5px;
+        th:last-child{
+            width: 5%;
         }
-
+        th, td{
+            padding: .5em;
+            border-style:solid;
+            border-width: 1px 0;
+            border-color: #77777777;
+        }
     </style>
 </header>
 
@@ -57,6 +61,7 @@
     }
     <div class="container">
         <h3>Listado de incidencias reportadas por el colectivo</h3>
+        <hr />
             <div class="row">
                 <table>
                     <thead> 
@@ -66,11 +71,8 @@
                         <th>Latitud</th>
                         <th>Localidad</th>
                         <th></th>
-
                     </tr>
-
                     </thead>
-
                     @foreach(var post in Model.Archive.Posts)
                     {
                     <tr>

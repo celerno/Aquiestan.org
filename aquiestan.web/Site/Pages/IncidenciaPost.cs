@@ -1,13 +1,12 @@
 ﻿using aquiestan.web.Models;
 using Piranha.AttributeBuilder;
+using Piranha.Extend.Blocks;
+using Piranha.Extend.Fields;
 
 namespace aquiestan.web.Site.Pages
 {
     [PostType(Title = "Incidencia")]
     [ContentTypeRoute(Title = "Incidencia", Route = "/colectivo/incidencia")]
-    [PageType(Title = "Incidencia")]
-    [BlockItemType(typeof(IncidenciaBlock))]
-    [BlockItemType(typeof(IList<MediaField>))]
     public class IncidenciaPost : StandardPost
     {
         [Region(Description = "Datos de la Incidencia", Display = RegionDisplayMode.Content, Title = "Datos")]

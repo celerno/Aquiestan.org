@@ -1,14 +1,8 @@
-@using aquiestan.web.Site.Pages;
 @model SinglePostWithComments<IncidenciaPost>
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.Data.MetaTitle) ? Model.Data.MetaTitle : Model.Data.Title;
     var hasImage = Model.Data.PrimaryImage.HasValue;
     var archive = await WebApp.Api.Pages.GetByIdAsync(Model.Data.BlogId);
-    if(Model.Data.Content == null)
-    {
-        Model.Data.Content = new IncidenciaBlock { Colectivo = new DataSelectField<Colectivo>() { Value= new Colectivo{ Nombre="Sample"}} };
-    }
-    var incidencia = Model.Data.Content;
 }
 @section head {
     @WebApp.MetaTags(Model.Data)
@@ -19,6 +13,16 @@
     <div class="container text-center">
         <h1>@Model.Data.Title</h1>
         <p class="post-meta">
+            <span>
+                In <a href="@archive.Permalink/category/@Model.Data.Category.Slug">@Model.Data.Category.Title</a>
+            </span>
+            <span>
+                Tags
+                @foreach (var tag in Model.Data.Tags)
+                {
+                    <a href="@archive.Permalink/tag/@tag.Slug">#@tag.Slug</a>
+                }
+            </span>
             @if (Model.Data.IsPublished)
             {
                 <span>
@@ -52,16 +56,9 @@
             </div>
         </div>
     }
-        <div class="block @(Model.Data?.Content?.CssName())">
-            <div class="container">
-               @Html.Raw(incidencia.AsHtmlTable)
-            </div>
-        </div>
-    
-    
-    @if (false/*Model.Data.EnableComments*/)
+    @if (Model.Data.EnableComments)
     {
-        <div id="comments" class="container comments">
+        <div id="comments" class="container comments" style="display:none">
             @if (Model.Data.IsCommentsOpen)
             {
                 <div class="alert alert-comment mt-2 mb-5">

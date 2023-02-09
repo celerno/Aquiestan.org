@@ -1,0 +1,25 @@
+﻿@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IncidenciaBlock
+@{
+
+}
+@{
+    <div class="incidencia">
+        @if (false)
+        {
+            <div>@Model.Colectivo.Value</div>
+        }
+        <div>
+        @Model.FechaHallazgo.Value?.ToShortDateString()
+        </div>
+        <div>@(Model.Localidad.Value)</div>
+        <div>@(Model.Longitud.Value)</div>
+        <div>@(Model.Latitud.Value)</div>
+        <div>@(Model.ReferenciasDeUbicacion.Value)</div>
+        <div>@(Model.CamposSinFormato.Value)</div>
+    </div>
+}

@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="top-nav">
                 <button class="btn btn-icon btn-info">
-                    <i class="fas fa-cog"></i>
+                    <i id="iconplus" class="fas fa-plus" onclick="toggleUpload()"></i>
                 </button>
                 <button class="btn btn-labeled btn-success">
                     <i class="fas fa-check"></i>Cerrar
@@ -24,14 +24,66 @@
             </div>
         </div>
     </div>
-    
+    <style>
+        #formUpload{
+           padding: 1em 4em;
+        }
+        .hidden{display:none;
+        animate:1s ease-out;}
+        .shown{
+            display:unset;
+            animate:1s ease-in;
+        }
+    </style>
+
+    <script>
+       function mockData(){
+   
+            var tabla = document.querySelector('#incidenciaTable');
+            var row = tabla.insertRow(0);
+            var observaciones = tabla.insertCell(0);
+            observaciones.innerHTML='mis observaciones';
+       }
+       function toggleUpload(){
+           var fileForm = 
+           document.querySelector('#formUpload');
+            var iconPlus = document.querySelector('#iconplus');
+
+           if(fileForm.classList.contains('hidden')){
+               fileForm.classList.remove('hidden');
+               fileForm.classList.add('shown');
+               iconPlus.classList.remove('fa-plus');
+               iconPlus.classList.add('fa-minus');
+               
+           }else{
+               fileForm.classList.remove('shown');
+               fileForm.classList.add('hidden');
+               iconPlus.classList.remove('fa-minus');
+               iconPlus.classList.add('fa-plus');
+           }
+       }
+    </script>
+<div id="formUpload" class="hidden container-fluid">
+            <h2>Cargar archivo de incidencias</h2>
+                    <dl>
+                        <dt>
+                            <label asp-for="FileUpload.FormFile"></label>
+                        </dt>
+                        <dd>
+                            <input asp-for="FileUpload.FormFile" class="btn" type="file">
+                            <span asp-validation-for="FileUpload.FormFile"></span>
+                        </dd>
+                    </dl>
+                    <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="Upload" />
+                </form>
+</div>
     <div class="container-fluid">
         <div class="row">
             <center>
-            <h1>Bitácora de sincronización de datos</h1>
+            <h2>Bitácora de sincronización de datos</h2>
             </center>
         </div>
-        <table class="table table-borderless">
+        <table id="incidenciaTable" class="table table-borderless">
             <thead>
                 <tr>
                     <th>Colectivo</th>
@@ -42,24 +94,55 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>col sample</td>
-                    <td>user sample</td>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
                     <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
                     <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
                 </tr>
+                  <tr>
+                  <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+                  <tr>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+                  <tr>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+                  <tr>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+                  <tr>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+                  <tr>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+                  <tr>
+                    <td>Madres Buscadoras de Sonora</td>
+                    <td>Admin</td>
+                    <td>@DateTime.Now.ToString("yyyy-MM-dd")</td>
+                    <td class="actions"><a href="#" class="danger"><i class="fas fa-cloud-download-alt"></i></a></td>
+                </tr>
+
             </tbody>
         </table>
-
-        <div class="card">
-            <div class="card-header">
-                <span class="title">Form Test</span>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Standard input</label>
-                    <input type="text" class="form-control" placeholder="Standard text input">
-                </div>
-            </div>
-        </div>
     </div>
 </div>

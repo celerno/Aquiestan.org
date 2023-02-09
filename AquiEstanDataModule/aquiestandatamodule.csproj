@@ -16,4 +16,8 @@
     <EmbeddedResource Include="assets\dist\**\*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Manager\Pages\" />
+  </ItemGroup>
+
 </Project>

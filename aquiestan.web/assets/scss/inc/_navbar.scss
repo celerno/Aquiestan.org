@@ -1,9 +1,10 @@
 .navbar.fixed-top {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    font-family: Raleway,sans-serif;
-    box-shadow: 0 0 2rem rgba(0,0,0,.15);
-
+    background-color: $color-white;
+    border-bottom: 1px solid $color-dark-a;
+    box-shadow: 0 0 2rem $color-dark-a;
+    img{
+        max-height: 5vh;
+    }
     .navbar-nav {
         font-size: 0.875rem;
         font-weight: bold;
@@ -11,7 +12,7 @@
 
         .active {
             a {
-                color: #f94c3b;
+                color: $color-dark;
             }
         }
     }

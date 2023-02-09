@@ -11,7 +11,7 @@ header {
 
     h1 {
         font-size: 3.6rem;
-        text-transform: uppercase;
+        text-transform: none;
     }
 
     .lead {
@@ -19,7 +19,7 @@ header {
     }
 
     &.has-image {
-        color: #eee;
+        color: $color-light;
         text-shadow: 1px 1px 1px rgba(0,0,0,.15);
 
         .dimmer {

@@ -1,3 +1,18 @@
+
+$color-dark: #bd9e5a; /*forrest green*/
+$color-dark-a: #bd9e5a7e; /*forrest green*/
+
+$color-medium: #ffb200; /* goldenrod*/
+$color-light: #ffe460; /* Amarillo-naranja */
+$color-white: #edfd94; /* cream*/
+$font-family-serif: 'Special Elite', cursive;
+$font-family-monospace: 'Special Elite', cursive;
+
+:root {
+    --font-family-sans-serif: 'Special Elite', cursive;
+    --font-family-sans-monospace: $font-family-serif;
+}
+
 @import "inc/general";
 @import "inc/type";
 @import "inc/buttons";

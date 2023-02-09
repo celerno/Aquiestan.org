@@ -1,5 +1,11 @@
+html, body {
+    font-family: var(--font-family-sans-serif);
+}
 body {
     padding-top: 3.5rem;
+    background-color: $color-white;
+    color: $color-dark;
+    
 }
 main {
     padding: 2rem 0;
@@ -8,10 +14,10 @@ img {
     max-width: 100%;
 }
 a {
-    color: #f94c3b;
+    color: $color-medium;
     transition: all .2s ease-in-out;
 
     &:hover {
-        color: darken(#f94c3b, 10%);
+        color: $color-dark;
     }
 }

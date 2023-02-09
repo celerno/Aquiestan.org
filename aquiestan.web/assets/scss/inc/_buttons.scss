@@ -1,12 +1,14 @@
+
+
 .btn {
     &.btn-primary {
-        background-color: #f94c3b;
-        border-color: #f94c3b;
+        background-color: $color-dark;
+        border-color: $color-dark;
         transition: all .2s ease-in-out;
 
         &:hover {
-            background-color: darken(#f94c3b, 15%);
-            border-color: darken(#f94c3b, 15%);
+            background-color: darken($color-dark, 15%);
+            border-color: darken($color-dark, 15%);
         }
     }
 }

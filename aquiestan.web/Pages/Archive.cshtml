@@ -1,11 +1,16 @@
 @page
+@using aquiestan.web.Site.Pages;
 @model ArchivePage<StandardArchive, Piranha.Models.PostInfo>
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.Data.MetaTitle) ? Model.Data.MetaTitle : Model.Data.Title;
     var hasImage = Model.Data.PrimaryImage.HasValue;
 
     var posts = Model.Archive.Posts.Count;
-
+    foreach(var post in Model.Archive.Posts)
+    {
+        post.Excerpt = WebApp.Api.Posts.GetByIdAsync<IncidenciaPost>(post.Id).Result.Excerpt;
+        post.Excerpt += $"<td><a href=\"{post.Permalink}\"><i class=\"fas fa-search\">...</i></a></td>";
+    }
     Func<string> BlogLink = () => {
         return Model.Data.Permalink
             + (Model.Archive.Category != null ? $"/category/{Model.Archive.Category.Slug}"  : "")
@@ -30,6 +35,15 @@
             </div>
         }
     </div>
+    <style>
+        table{
+            display: flex;
+        }
+        td{
+            margin: 5px;
+        }
+
+    </style>
 </header>
 
 <main class="archive">
@@ -42,60 +56,29 @@
         </div>
     }
     <div class="container">
-        @for (var n = 0; n < posts; n += 2)
-        {
+        <h3>Listado de incidencias reportadas por el colectivo</h3>
             <div class="row">
-                @for (var i = n; i < Math.Min(posts, n + 2); i++)
-                {
-                    var post = Model.Archive.Posts[i];
+                <table>
+                    <thead> 
+                        <tr>
+                        <th>Fecha</th>
+                        <th>Longitud</th>
+                        <th>Latitud</th>
+                        <th>Localidad</th>
+                        <th></th>
 
-                    <div class="@(i == 0 ? "col-md-12" : "col-md-6")">
-                        <article>
-                            <header>
-                                @if (post.PrimaryImage.HasValue)
-                                {
-                                    <a href="@post.Permalink">
-                                        <img class="rounded mb-3" src="@Url.Content(WebApp.Media.ResizeImage(post.PrimaryImage, 1140, 450))" alt="@post.PrimaryImage.Media.AltText">
-                                    </a>
-                                }
-                                <h3>@post.Title</h3>
-                                <p class="post-meta">
-                                    <span>
-                                        In <a href="@Model.Data.Permalink/category/@post.Category.Slug">@post.Category.Title</a>
-                                    </span>
-                                    <span>
-                                        Tags
-                                        @foreach (var tag in post.Tags)
-                                        {
-                                            <a href="@Model.Data.Permalink/tag/@tag.Slug">#@tag.Slug</a>
-                                        }
-                                    </span>
-                                    @if (post.IsPublished)
-                                    {
-                                        <span>
-                                            Published @post.Published.Value.ToShortDateString()
-                                        </span>
-                                    }
-                                    @if (post.EnableComments && post.CommentCount > 0)
-                                    {
-                                        <span>
-                                            <a href="@post.Permalink#comments">@post.CommentCount @(post.CommentCount == 1 ? "comment" : "comments")</a>
-                                        </span>
-                                    }
-                                </p>
-                                <p>@Html.Raw(post.Excerpt)</p>
-                                <a href="@post.Permalink" class="btn btn-primary">Read more</a>
-                            </header>
-                        </article>
-                    </div>
-                    @if (i == 0)
+                    </tr>
+
+                    </thead>
+
+                    @foreach(var post in Model.Archive.Posts)
                     {
-                        n--;
-                        break;
+                    <tr>
+                        @Html.Raw(post.Excerpt)
+                    </tr>
                     }
-                }
+                </table>
             </div>
-        }
         @if (Model.Archive.TotalPages > 1) {
             <div class="row">
                 <div class="col-sm">

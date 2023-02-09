@@ -7,7 +7,8 @@ namespace aquiestan.web.Site.Pages
 {
     [PageType(Title = "Página para colectivo", 
         IsArchive = true)]
-    public class ColectivoPage:StandardArchive
+    [PageTypeArchiveItem(typeof(IncidenciaPost))]
+    public class ColectivoArchivePage:StandardArchive
     {
         [Region(Display = RegionDisplayMode.Content)]
         public MapRegion Mapa { get; set; }

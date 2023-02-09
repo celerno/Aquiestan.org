@@ -6,6 +6,7 @@ using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using aquiestan.web.Site;
 using aquiestan.web.Site.Pages;
+using aquiestan.web.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,7 +68,10 @@ app.UsePiranha(options =>
         .AddType(typeof(AquiestanSite))
         .AddType(typeof(Colectivo))
         .AddType(typeof(MapRegion))
-        .AddType(typeof(ColectivoPage))
+        .AddType(typeof(ColectivoArchivePage))
+        .AddType(typeof(IncidenciaPost))
+        .AddType(typeof(IncidenciaBlock))
+        .AddType(typeof(ColectivoController))
         .Build()
         .DeleteOrphans();
     

@@ -23,7 +23,7 @@ namespace aquiestan.web.Site.Pages
         }
 
         [Region(Display = RegionDisplayMode.Content, Title = "Documentos y fotografías", Description = "Archivos obtenidos relacionados a esta incidencia.", ListExpand = true)]
-        public IList<MediaField> MediaAssets { get; set; }
+        public IList<ImageField> MediaAssets { get; set; }
 
     }
 }

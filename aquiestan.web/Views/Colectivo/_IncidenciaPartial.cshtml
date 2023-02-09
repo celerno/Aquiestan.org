@@ -1,4 +1,5 @@
 ﻿@*
+    
 
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -11,15 +12,16 @@
     <div class="incidencia">
         @if (false)
         {
-            <div>@Model.Colectivo.Value</div>
+            <div>@Html.LabelFor(x=> x.Colectivo)</div>
         }
         <div>
-        @Model.FechaHallazgo.Value?.ToShortDateString()
+            <label>Fecha</label><span>@Model.FechaHallazgo.Value</span>
         </div>
-        <div>@(Model.Localidad.Value)</div>
-        <div>@(Model.Longitud.Value)</div>
-        <div>@(Model.Latitud.Value)</div>
-        <div>@(Model.ReferenciasDeUbicacion.Value)</div>
-        <div>@(Model.CamposSinFormato.Value)</div>
+        <div><label>Localidad</label><span>@Model.Localidad?.Value</span></div>
+        <div><label>Latitud</label><span>@Model.Latitud?.Value</span></div>
+        <div><label>Longitud</label><span>@Model.Longitud?.Value</span></div>
+        <div><label>Referencias (ubicación)</label><span>@Model.ReferenciasDeUbicacion?.Value</span></div>
+        <div><label>Observaciones</label><span>@Model.Observaciones?.Value</span></div>
+
     </div>
 }

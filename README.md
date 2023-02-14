@@ -25,6 +25,9 @@ dotnet run
 > gulp min:js
 > gulp min:css
 ```
+## Publish to the web
+Attached to the solution files, you can find the setup I'm using for publishing the solution in an ubuntu linux environment on a vps
+https://github.com/celerno/Aquiestan.org/blob/main/aquiestan.org.nginx.conf
 
 # Roadmap:
 https://docs.google.com/presentation/d/1tL9imjaRNh_-eXQ-Z61jsmsk2oyqE2TawSY_uz_vHw4/edit?usp=sharing

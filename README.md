@@ -6,7 +6,7 @@ Aquiestan.org is a cms solution based on .net 6 and uses a local conection to SQ
 Powered by @PiranhaCMS https://github.com/piranhacms/piranha.core
 
 # Requirements and Setup Instructions
-- .net 6
+- .net 6 (https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - any web server compatible with .net 6 (IIS Express, Nginx, etc).
 
 ## Run the project

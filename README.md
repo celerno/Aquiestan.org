@@ -19,10 +19,12 @@ cd aquiestan.org/aquiestan.web
 dotnet run
 ```
 ## Build and update javascript/css assets
+```
 > cd aquiestan.web
 > npm install
 > gulp min:js
 > gulp min:css
+```
 
 # Roadmap:
 https://docs.google.com/presentation/d/1tL9imjaRNh_-eXQ-Z61jsmsk2oyqE2TawSY_uz_vHw4/edit?usp=sharing

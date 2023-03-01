@@ -5,11 +5,7 @@
     ViewData["Title"] = !string.IsNullOrEmpty(Model.Data.MetaTitle) ? Model.Data.MetaTitle : Model.Data.Title;
     var hasImage = Model.Data.PrimaryImage.HasValue;
     var posts = Model.Archive.Posts.Count;
-    foreach(var post in Model.Archive.Posts)
-    {
-        post.Excerpt = WebApp.Api.Posts.GetByIdAsync<IncidenciaPost>(post.Id).Result.Excerpt;
-        post.Excerpt += $"<td><a href=\"{post.Permalink}\"><i class=\"fas fa-search\">...</i></a></td>";
-    }
+    var incidencias = WebApp.Api.Posts.GetAllAsync<IncidenciaPost>(Model.Data.Id).Result;
     Func<string> BlogLink = () => {
         return Model.Data.Permalink
             + (Model.Archive.Category != null ? $"/category/{Model.Archive.Category.Slug}"  : "")
@@ -21,18 +17,20 @@
     @WebApp.MetaTags(Model.Data)
 }
 
-<header @(hasImage ? "class=has-image" : "") @(hasImage ? $"style=background-image:url({ @Url.Content(WebApp.Media.ResizeImage(Model.Data.PrimaryImage, 1920, 400)) })" : "")>
+<header @(hasImage ? "class=has-image" : "") @(hasImage ? $"style=background-image:url({@Url.Content(WebApp.Media.ResizeImage(Model.Data.PrimaryImage, 1920, 400))})" : "") style='display:@(incidencias.Count() > 0 ? "initial" : "none")'>
     <div class="dimmer"></div>
+
     <div class="container text-center">
-        <h1>@Model.Data.Title</h1>
-        @if (!string.IsNullOrWhiteSpace(Model.Data.Excerpt))
-        {
-            <div class="row justify-content-center">
-                <div class="col-lg-8 lead">
-                    @Html.Raw(Model.Data.Excerpt)
+       
+            <h1>@Model.Data.Title</h1>
+            @if (!string.IsNullOrWhiteSpace(Model.Data.Excerpt))
+            {
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 lead">
+                        @Html.Raw(Model.Data.Excerpt)
+                    </div>
                 </div>
-            </div>
-        }
+            }
     </div>
     <style>
         .archive{
@@ -66,11 +64,31 @@
             border-width: 1px 0;
             border-color: #77777777;
         }
+        div.featured{
+            display:flex;
+            flex-wrap:wrap;
+        }
+        div.featured div.card{
+            border-radius: 40px;
+            padding:20px;
+        }
+        div.featured>div.block:last-child{
+            flex:1;
+        }
     </style>
 </header>
 
 <main class="archive">
-        <div class="container">
+        <div class="container featured">
+        @foreach (var block in Model.Data.Blocks)
+        {
+            <div class="block @block.CssName()">
+                <div class="container">
+                    @Html.DisplayFor(m => block, block.GetType().Name)
+                </div>
+            </div>
+        }
+            <div style='display:@(incidencias.Count()>0?"initial":"none")'>
             <h3>Listado de incidencias reportadas por el colectivo</h3>
             <hr />
             <div class="row">
@@ -84,13 +102,14 @@
                             <th></th>
                         </tr>
                     </thead>
-                    @foreach (var post in Model.Archive.Posts)
+                    @foreach (var incidencia in incidencias)
                     {
                         <tr>
-                            @Html.Raw(post.Excerpt)
+                            @Html.Raw(incidencia.Excerpt)
                         </tr>
                     }
                 </table>
+            </div>
             </div>
             @if (Model.Archive.TotalPages > 1)
             {
@@ -133,12 +152,5 @@
             }
         </div>
 
-            @foreach (var block in Model.Data.Blocks)
-            {
-                <div class="block @block.CssName()">
-                    <div class="container">
-                        @Html.DisplayFor(m => block, block.GetType().Name)
-                    </div>
-                </div>
-            }
+           
 </main>

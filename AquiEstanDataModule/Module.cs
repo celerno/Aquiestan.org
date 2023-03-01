@@ -57,14 +57,14 @@ namespace AquiEstanDataModule
             Menu.Items.Add(new MenuItem
             {
                 InternalId = "AquiEstanDataModule",
-                Name = "Google Data Connector",
+                Name = "Carga de Datos",
                 Css = "fas fa-box"
             });
             Menu.Items["AquiEstanDataModule"].Items.AddRange(new MenuItem[]{
             new MenuItem
             {
                 InternalId = "AquiEstanDataModuleStart",
-                Name = "General",
+                Name = "Configuración",
                 Route = "~/manager/aquiestandatamodule",
                 Policy = Permissions.AquiEstanDataModule,
                 Css = "fas fa-box"
